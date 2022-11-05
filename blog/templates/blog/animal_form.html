@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %} 
+{% block titulo%} Alta de Animal {% endblock %}
+{% block contenido %}
+<br>
+<h1>Registrar Animal</h1>
+<form  enctype='multipart/form-data' method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Guardar</button>
+</form>
+<a href="{% url 'animal_listar' %}">Volver a la lista de Animales</a>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'blog/base.html' %}
+{% block contenido %}
+<div class="container">
+    {% if user.is_authenticated %}
+        <a href="{% url 'blog-logout' %}">Salir</a>
+        <a href="{% url 'animal_alta' %}">Nuevo </a>
+        <a href="{% url 'profile-update' user.id %}">Actualizar Profile</a>
+    {% else %}
+        <a href="{% url 'blog-login' %}"> Ingresar</a>
+    {% endif %}
+    
+    <table class="table">
+        <tr>
+            <th>Nombre</th>
+            <th>Clase</th>
+            <th>Sexo</th>
+            <th>Edad</th>
+            <th>Fecha de Rescate</th>
+        </tr>
+        
+        {% for animal in object_list %}
+            <tr>
+                <td>{{ animal.nombre }}</td>
+                <td>{{ animal.clase_animal }}</td>
+                <td>{{ animal.sexo }}</td>
+                <td>{{ animal.edad_aproximada }}</td>
+                <td>{{ animal.fecha_publicacion }}</td>
+                <td>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'animal_borrar' animal.id  %}">Borrar</a>
+                        <a href="{% url 'animal_modificar' animal.id  %}">Actulizar</a>
+                    {% endif %}
+                    <a href="{% url 'detail-animal' animal.id  %}">Ver</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>    
+  
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Pagina {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">siguiente</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</div>
+{% endblock %}
