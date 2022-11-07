@@ -930,7 +930,10 @@ progress {
     flex: 0 0 auto;
     width: 16.6666666667%;
   }
-
+  .fcc-btn {
+    background-color: #06357a;
+    color: white  
+  }
   .col-sm-auto {
     flex: 0 0 auto;
     width: auto;

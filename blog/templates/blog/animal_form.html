@@ -7,7 +7,7 @@
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button type="submit">Guardar</button>
+        <button class="btn btn-primary"type="submit">Guardar</button>
 </form>
 <a href="{% url 'animal_listar' %}">Volver a la lista de Animales</a>
 {% endblock %}

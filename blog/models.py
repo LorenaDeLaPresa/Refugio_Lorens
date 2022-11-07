@@ -1,7 +1,6 @@
 from django.db import models
 
 
-
 class Configuracion(models.Model):
     nombre_blog = models.CharField(max_length=15)
     titulo_blog = models.CharField(max_length=35)
@@ -15,7 +14,7 @@ class Animal(models.Model):
     sexo = models.CharField(max_length=10)
     edad_aproximada = models.IntegerField()
     descripcion = models.TextField(max_length=3000)
-    fecha_publicacion = models.DateTimeField()
+    fecha_publicacion = models.DateTimeField(auto_now_add=True)
     foto = models.ImageField(upload_to="posts", null=True, blank=True)
     
 

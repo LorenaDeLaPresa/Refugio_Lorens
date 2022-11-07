@@ -14,9 +14,8 @@ from blog.models import Configuracion
 
 
 def index(request):
-     configuracion = Configuracion.objects.first()
      animal = Animal.objects.order_by('-fecha_publicacion').all()
-     return render(request, 'blog/index.html', {"animal": animal, 'configuracion': configuracion})
+     return render(request, 'blog/index.html', {"animal": animal})
 
 class AnimalList(ListView):
     model = Animal
@@ -28,13 +27,13 @@ class AnimalList(ListView):
 
 class AnimalCreate(CreateView):
     model = Animal
-    fields =['nombre', 'clase_animal', 'sexo', 'edad_aproximada','fecha_publicacion','foto'] 
+    fields =['nombre', 'clase_animal', 'sexo', 'edad_aproximada','descripcion', 'foto'] 
     template_name = 'blog/animal_form.html'
     success_url = reverse_lazy('animal_listar')
 
 class AnimalUpdate(UpdateView):
     model = Animal
-    fields =['nombre', 'clase_animal', 'sexo', 'edad_aproximada','fecha_publicacion','foto'] 
+    fields =['nombre', 'clase_animal', 'sexo', 'edad_aproximada', 'descripcion', 'foto'] 
     template_name = 'blog/animal_form.html'
     success_url = reverse_lazy('animal_listar')
 
@@ -48,8 +47,8 @@ class AnimalDetail(DetailView):
 
 class BuscarAnimalPorNombre(ListView):
     def get_queryset(self):
-        blog_title = self.request.GET.get('animal-nombre')
-        return Animal.objects.filter(title__icontains=blog_title)
+        animal_nombre = self.request.GET.get('animal-nombre')
+        return Animal.objects.filter(nombre__icontains=animal_nombre)
 
 class BlogLogin(LoginView):
     template_name = 'blog/blog_login.html'
