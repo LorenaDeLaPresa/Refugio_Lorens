@@ -12,31 +12,29 @@
     <table class="table table-responsive">
     <thead class= "thead-dark">
         <tr>
-            <th>Nombre</th>
-            <th>Clase</th>
-            <th>Sexo</th>
-            <th>Edad</th>
-            <th>Fecha de Publicación</th>
+            <th>#</th>
+            <th>Nombre Adoptante</th>
+            <th>Apellido Adoptante</th>
+            <th>Clase Animal</th>
+            <th>Nombre Animal</th>
+            <th>Fecha de Adopción</th>
         </tr>
     </thead>   
-        {% for animal in object_list %}
-           {% if animal.estado %}
+        {% for adopcion in object_list %}
             <tr>
-                <td>{{ animal.nombre }}</td>
-                <td>{{ animal.clase_animal }}</td>
-                <td>{{ animal.sexo }}</td>
-                <td>{{ animal.edad_aproximada }}</td>
-                <td>{{ animal.fecha_publicacion }}</td>
+                <td>{{ adopcion.id }}</td>
+                <td>{{ adopcion.user.nombre }}</td>
+                <td>{{ adopcion.user.apellido }}</td>
+                <td>{{ adopcion.animal.nombre}}</td>
+                <td>{{ adopcion.fecha_adopcion }}</td>
                 <td>
                     {% if user.is_authenticated %}
-                        <a class="btn btn-primary"href="{% url 'animal_borrar' animal.id  %}">Borrar</a>
-                        <a class="btn btn-primary"href="{% url 'animal_modificar' animal.id  %}">Actualizar</a>
-                        <a class="btn btn-primary"href="{% url 'adopcion_alta' animal.id  %}">Adoptar</a>
+                        <a class="btn btn-primary"href="{% url 'adopcion_borrar' adopcion.id  %}">Borrar</a>
+                        <a class="btn btn-primary"href="{% url 'adopcion_modificar' adopcion.id  %}">Actualizar</a>
                     {% endif %}
-                    <a class="btn btn-primary"href="{% url 'detail-animal' animal.id  %}">Ver</a>
+                    
                 </td>
             </tr>
-            {% endif %}
         {% endfor %}
     </table>    
   

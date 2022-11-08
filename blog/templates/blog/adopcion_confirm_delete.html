@@ -1,15 +1,14 @@
-
 {% extends 'blog/base.html' %}
 {% block contenido %}
 <body>
-    ¿Está seguro de borrar al {{animal.clase_animal}}: {{animal.nombre}}? 
+    ¿Está seguro de borrar la adopción de: {{adopcion.animal.nombre}}? 
     <form method="post">
         {% csrf_token %}
         {{form}}
         <input type="submit" value="si">
     </form>
 
-    <a class="btn btn-primary" href="{% url 'animal_listar' %}">Volver a la lista de post</a>
+    <a class="btn btn-primary" href="{% url 'animal_listar' %}">Volver a la lista de Adopciones</a>
 
     
 </body>

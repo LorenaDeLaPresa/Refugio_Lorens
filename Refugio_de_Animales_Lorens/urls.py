@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import path
 from blog.views import *
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index, name="index-blog"),
@@ -32,5 +33,10 @@ urlpatterns = [
     path('logout/', BlogLogout.as_view(), name="blog-logout"),
     path('signup/', BlogSignUp.as_view(), name="blog-signup"),
     path('user-profile/<int:pk>', ProfileUpdate.as_view(), name="profile-update"),
+    path('list_adopcion/', AdopcionList.as_view(), name="adopcion_listar"),
+    path('create_adopcion/<int:pk>/', AdopcionCreate.as_view(), name="adopcion_alta"),
+    path('detail_adopcion/<int:pk>/', AdopcionDetail.as_view(), name="adopcion_detail"),
+    path('update_adopcion/<int:pk>/', AdopcionUpdate.as_view(), name="adopcion_modificar"),
+    path('delete_adopcion/<int:pk>', AdopcionDelete.as_view(), name="adopcion_borrar"),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

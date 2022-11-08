@@ -20,5 +20,10 @@
         <h5> Descripcion: {{object.descripcion}} </h5>
         
     </div>
+    <td>
+        {% if user.is_authenticated %}
+                <a class="btn btn-primary"href="{% url 'adopcion_alta' animal.id  %}">Adoptar</a>
+        {% endif %}
+    </td>
 
 {% endblock %}

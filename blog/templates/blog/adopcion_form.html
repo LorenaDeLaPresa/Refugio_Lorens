@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %} 
+{% block titulo%} Solicitud de Adopción {% endblock %}
+{% block contenido %}
+<br>
+
+<form  enctype='multipart/form-data' method="post">
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+
+
+        <button class="btn btn-primary"type="submit">Guardar</button>
+        
+</form>
+<a href="{% url 'animal_listar' %}">Volver a la lista de Animales</a>
+{% endblock %}
