@@ -1,11 +1,6 @@
 from django.db import models
 from django.contrib.auth.admin import User
 
-class Configuracion(models.Model):
-    nombre_blog = models.CharField(max_length=15)
-    titulo_blog = models.CharField(max_length=35)
-    subtitulo_blog=models.CharField(max_length= 45)
-    creado_por= models.CharField(max_length=45)
 
 
 class Animal(models.Model):

@@ -11,7 +11,7 @@
 
     <div class="d-flex justify-content-center">
         {% if object.foto %}
-        <img style="border: 15px solid; color:aqua" height="255" src="{{ object.foto.url }}" />
+        <img style="border: 15px solid; color:darkslateblue" height="255" src="{{ object.foto.url }}" />
         {% else %}
         <img height="255" src="https://dummyimage.com/255x255/dee2e6/6c757d.jpg" alt="...">
         {% endif %}
@@ -21,9 +21,10 @@
         
     </div>
     <td>
-        {% if user.is_authenticated %}
-                <a class="btn btn-primary"href="{% url 'adopcion_alta' animal.id  %}">Adoptar</a>
+        {% if user.is_authenticated and object.estado %}
+                <a style="background-color:darkslateblue;"class="btn btn-primary"href="{% url 'adopcion_alta' animal.id  %}">Adoptar</a>
         {% endif %}
+        <a style="background-color:darkslateblue;"class="btn btn-primary"href="{% url 'index-blog'  %}">Volver</a>
     </td>
 
 {% endblock %}

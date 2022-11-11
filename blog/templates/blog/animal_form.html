@@ -7,7 +7,10 @@
         {% csrf_token %}
         {{ form.as_p }}
 
-        <button class="btn btn-primary"type="submit">Guardar</button>
+        <button style="background-color:darkslateblue;"class="btn btn-primary"type="submit">Guardar</button>
+        <a style="background-color:darkslateblue;"class="btn btn-primary"href="{% url 'index-blog'  %}">Volver</a>
 </form>
+
+
 <a href="{% url 'animal_listar' %}">Volver a la lista de Animales</a>
 {% endblock %}

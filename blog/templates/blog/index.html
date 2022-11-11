@@ -1,32 +1,32 @@
 {% extends 'blog/base.html' %}
 
 {% block contenido %}
-
 <div class="row">
     <!-- Blog entries-->
     <div class="col-lg-8">
         <!-- Featured blog -->
         <div class="card mb-4">
             {% if  animal.0 %}
-            <a href="#!"><img style="border: 15px solid; color:aqua; max-width:100%;"  class="card-img-top" src="{{ animal.0.foto.url }}" alt="..." /></a>
+            <a href="#!"><img style="border: 10px solid; color:darkslateblue; max-width:100%;"  class="card-img-top" src="{{ animal.0.foto.url }}" alt="..." /></a>
             <div class="card-body">
                 <div class="small text-muted">{{animal.0.fecha_publicacion}}</div>
-                <h2 class="card-title">{{animal.0.nombre}}</h2>
+                <h2 style="color:darkslateblue;" class="card-title">{{animal.0.nombre}}</h2>
                 <p class="card-text">{{animal.0.description}}</p>
                 <a class="btn btn-primary" href="{% url 'detail-animal' animal.0.id %}">Leer más →</a>
             </div>
             {% endif %}
         </div>
+        
         <!-- Nested row for non-featured blog -->
         <div class="row">
             <div class="col-lg-6">
                 <!-- Blog -->
                 {% if animal.1 %}
                 <div class="card mb-4">
-                    <a href="#!"><img style="border: 15px solid; color:aqua; max-width:100%;" class="card-img-top" src="{{ animal.1.foto.url }}" alt="..." /></a>
+                    <a href="#!"><img style="border: 10px solid; color:darkslateblue; max-width:100%;" class="card-img-top" src="{{ animal.1.foto.url }}" alt="..." /></a>
                     <div class="card-body">
                         <div class="small text-muted">{{animal.1.fecha_publicacion}}</div>
-                        <h2 class="card-title">{{animal.1.nombre}}</h2>
+                        <h2 style="color:darkslateblue;"class="card-title">{{animal.1.nombre}}</h2>
                         <p class="card-text">{{animal.1.descripcion}}</p>
                         <a class="btn btn-primary" href="{% url 'detail-animal' animal.1.id %}">Leer más →</a>
                     </div>
@@ -35,10 +35,10 @@
                 <!-- Blog -->
                 <div class="card mb-4">
                 {% if animal.2 %}
-                    <a href="#!"><img style="border: 15px solid; color:aqua; max-width:100%;" class="card-img-top" src="{{ animal.2.foto.url }}" alt="..." /></a>
+                    <a href="#!"><img style="border: 10px solid; color:darkslateblue; max-width:100%;" class="card-img-top" src="{{ animal.2.foto.url }}" alt="..." /></a>
                     <div class="card-body">
                         <div class="small text-muted">{{animal.2.fecha_publicacion}}</div>
-                        <h2 class="card-title">{{animal.2.nombre}}</h2>
+                        <h2 style="color:darkslateblue;" class="card-title">{{animal.2.nombre}}</h2>
                         <p class="card-text">{{animal.2.descripcion}}</p>
                         <a class="btn btn-primary" href="{% url 'detail-animal' animal.2.id %}">Leer más →</a>
                     </div>
@@ -49,10 +49,10 @@
                 {% if animal.3 %}
                 <!-- Blog -->
                 <div class="card mb-4">
-                    <a href="#!"><img style="border: 15px solid; color:aqua; max-width:100%;" class="card-img-top" src="{{ animal.3.foto.url }}" alt="..." /></a>
+                    <a href="#!"><img style="border: 10px solid; color:darkslateblue; max-width:100%;" class="card-img-top" src="{{ animal.3.foto.url }}" alt="..." /></a>
                     <div class="card-body">
                         <div class="small text-muted">{{animal.3.fecha_publicacion}}</div>
-                        <h2 class="card-title">{{animal.3.nombre}}</h2>
+                        <h2 style="color:darkslateblue;"class="card-title">{{animal.3.nombre}}</h2>
                         <p class="card-text">{{animal.3.descripcion}}</p>
                         <a class="btn btn-primary" href="{% url 'detail-animal' animal.3.id %}">Leer más →</a>
                     </div>
@@ -61,10 +61,10 @@
                 <!-- Blog -->
                 <div class="card mb-4">
                     {% if animal.4 %}
-                            <a href="#!"><img style="border: 15px solid; color:aqua; max-width:100%;" class="card-img-top" src="{{ animal.4.foto.url }}" alt="..." /></a>
+                            <a href="#!"><img style="border: 10px solid; color:darkslateblue; max-width:100%;" class="card-img-top" src="{{ animal.4.foto.url }}" alt="..." /></a>
                     <div class="card-body">
                         <div class="small text-muted">{{animal.4.fecha_publicacion}}</div>
-                        <h2 class="card-title">{{animal.4.nombre}}</h2>
+                        <h2 style="color:darkslateblue;"class="card-title">{{animal.4.nombre}}</h2>
                         <p class="card-text">{{animal.4.descripcion}}</p>
                         <a class="btn btn-primary" href="{% url 'detail-animal' animal.4.id %}">Leer más →</a>
                     </div>
@@ -77,15 +77,17 @@
     <div class="col-lg-4">
         <!-- Search widget-->
         <div class="card mb-4">
-            <div class="card-header">Buscar Animales por nombre</div>
+            <div style="color:darkslateblue;"class="card-header">Buscar Animales por nombre</div>
             <div class="card-body">
                 <form action="{% url 'buscar_por_nombre' %}" method="get">
                     {% csrf_token %}
                     <input type="search" name="animal-nombre">
-                    <input type="submit" value="go">
+                    
+                    <input type="submit" value="Adoptar">
                 </form>
             </div>
         </div>
         
+        <a style="background-color:darkslateblue;"class="btn btn-primary"href="{% url 'adopcion_listar' %}">Adopciones</a>
         
 {% endblock %}

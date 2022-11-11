@@ -3,7 +3,9 @@
 <form method="POST">
     {% csrf_token %}
     {{form.as_p}}
-    <button class="btn btn-primary" type="submit">Login</button>
-    <a class="btn btn-primary"href="{% url 'blog-signup' %}">Nuevo Usuario </a>
+    <button style="background-color:darkslateblue;"class="btn btn-primary" type="submit">Login</button>
+    <a style="background-color:darkslateblue;"class="btn btn-primary"href="{% url 'blog-signup' %}">Nuevo Usuario </a>
+    <a style="background-color:darkslateblue;"class="btn btn-primary"href="{% url 'index-blog'  %}">Volver</a>
+
 </form>
 {% endblock %}

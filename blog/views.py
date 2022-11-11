@@ -1,23 +1,28 @@
+from django import forms
+from django.http import HttpResponseRedirect
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth.admin import User
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
-from django.core import serializers
 from django.urls import reverse_lazy
 from blog.models import Animal, Adopcion
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
-from blog.models import Configuracion
+from blog.forms import AdopcionForm, NewUserForm
 
 
+def about(request):
+    return render(request, 'blog/about.html')
 
+    
 def index(request):
      animal = Animal.objects.order_by('-fecha_publicacion').all()
      return render(request, 'blog/index.html', {"animal": animal})
 
 class AnimalList(ListView):
+    adopcion = Adopcion.objects.all()
     model = Animal
     template_name = 'blog/animal_list.html'
     paginate_by = 5    
@@ -57,17 +62,34 @@ class AdopcionList(ListView):
     ordering = ['id']
 
 class AdopcionCreate(CreateView):
-    model = Adopcion 
-    fields =['usuario', 'animal', 'razones']  
-    initial = {"usuario":Adopcion.usuario}
-    
+    model= Adopcion
+    form_class = AdopcionForm
     template_name = 'blog/adopcion_form.html'
     success_url = reverse_lazy('adopcion_listar')
     
-    def post(request, id_animal, template= 'blog/adopcion_form.html'):
-        animal= get_object_or_404(Animal, pk = id_animal)
-        animal.estado = False
-        animal.save()
+    def actualizar(self, request, pk): 
+      animal = get_object_or_404(Animal, pk=pk)
+      form = self.form_class(request.POST ,instance=animal)
+      if form.is_valid():
+          animal.estado =False
+          animal.save()
+          form.save()
+      return render(request, self.template_name)
+'''
+    def actualizar_estado(self, request, pk):
+        a = get_object_or_404(Animal, pk=pk)
+        a.estado=False
+        a.save()
+
+    def actualizar(self, request, pk):
+        animal = get_object_or_404(Animal, pk=pk)
+        animal.estado=False
+        animal.save()       
+        return render(request, self.template_name) 
+'''
+     
+
+                
 
 class AdopcionUpdate(UpdateView):
     model = Adopcion
@@ -91,12 +113,13 @@ class BlogLogin(LoginView):
 
 class BlogLogout(LogoutView):
     template_name = 'blog/blog_logout.html'
-    
-class BlogSignUp(CreateView):
-    form_class = UserCreationForm
-    success_url = reverse_lazy("blog-login")
-    template_name = "registration/signup.html"
 
+      
+
+class BlogSignUp(CreateView):
+    form_class = NewUserForm
+    template_name = 'registration/signup.html'
+    success_url = reverse_lazy("blog-login")
     
 
 class ProfileUpdate(UpdateView):
