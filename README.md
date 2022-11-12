@@ -6,9 +6,8 @@ Esta aplicación consiste en poder dar de alta a los animales que se encuentran 
 
 ## Instrucciones de uso
 
-1. Clonar el proyecto.    ```
-   git clone https://github.com/LorenaDeLaPresa/Refugio_Lorens.git
-   ```
+1. Clonar el proyecto. 
+``` git clone https://github.com/LorenaDeLaPresa/Refugio_Lorens.git   ```
 2. Instalar las dependencias del proyecto: `pip install -r requirements.txt`.
 3. Crear las migraciones ejecutando `python manage.py makemigrations` y luego `python manage.py migrate`.
 4. Iniciar la aplicación con `python manage.py runserver`.
