@@ -67,27 +67,12 @@ class AdopcionCreate(CreateView):
     template_name = 'blog/adopcion_form.html'
     success_url = reverse_lazy('adopcion_listar')
     
-    def actualizar(self, request, pk): 
-      animal = get_object_or_404(Animal, pk=pk)
-      form = self.form_class(request.POST ,instance=animal)
-      if form.is_valid():
-          animal.estado =False
-          animal.save()
-          form.save()
-      return render(request, self.template_name)
-'''
-    def actualizar_estado(self, request, pk):
-        a = get_object_or_404(Animal, pk=pk)
-        a.estado=False
-        a.save()
-
-    def actualizar(self, request, pk):
-        animal = get_object_or_404(Animal, pk=pk)
-        animal.estado=False
-        animal.save()       
-        return render(request, self.template_name) 
-'''
-     
+    def post(self, request, pk):
+      animal = Animal.objects.get(pk =pk)
+      animal.estado =False
+      animal.save()
+      return render(request, 'blog/index.html', {"animal": animal})
+      
 
                 
 
