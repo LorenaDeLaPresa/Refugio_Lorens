@@ -41,6 +41,7 @@ urlpatterns = [
     path('update_adopcion/<int:pk>/', AdopcionUpdate.as_view(), name="adopcion_modificar"),
     path('delete_adopcion/<int:pk>', AdopcionDelete.as_view(), name="adopcion_borrar"),
     path('about', about, name='about'),
+    
  
 ]
 

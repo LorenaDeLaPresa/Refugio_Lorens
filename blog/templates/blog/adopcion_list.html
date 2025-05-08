@@ -30,8 +30,8 @@
                 <td>{{ adopcion.fecha_adopcion }}</td>
                 <td>
                     {% if user.is_authenticated %}
-                        <a style="background-color:darkslateblue;"class="btn btn-primary"href="{% url 'adopcion_borrar' adopcion.id  %}">Borrar</a>
-                        <a style="background-color:darkslateblue;"class="btn btn-primary"href="{% url 'adopcion_modificar' adopcion.id  %}">Actualizar</a>
+                        <a style="background-color:rgb(5, 3, 20);"class="btn btn-primary"href="{% url 'adopcion_borrar' adopcion.id  %}">Borrar</a>
+                        <a style="background-color:rgb(5, 3, 17);"class="btn btn-primary"href="{% url 'adopcion_modificar' adopcion.id  %}">Actualizar</a>
                     {% endif %}
                     
                 </td>
